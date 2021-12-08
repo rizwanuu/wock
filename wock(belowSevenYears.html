@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wock(belowSevenYears)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        .imgStyle {
+            /* width: 15rem;
+            height: 15rem; */
+            margin: 0;
+        }
+
+        .imgCenter {
+            margin: auto;
+        }
+
+        #testResult {
+            background: gray;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            height: 10rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card height-auto container1" style="width: 50%; position: relative; top: 30vh; left: 25vw;"
+        id="full_screen_div">
+        <div class="card-body" id="startSection">
+            <div class="row">
+                <div class="col-12" style="text-align: center; margin-bottom: 10px">
+                    Start the Training by clicking the button below!
+                </div>
+                <div class="col-12" style="text-align: center; margin-top: 10rem">
+                    <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" id="demoPlay">Start
+                        Training</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" id="startTest" style="display: none;">
+            <div class="row">
+                <div class="col-12" style="text-align: center; margin-bottom: 10px">
+                    Start the Test by clicking the button below!
+                </div>
+                <div class="col-12" style="text-align: center; margin-top: 10rem">
+                    <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" id="testPlay">Start
+                        Test</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body" id="testResult" style="display: none;"></div>
+        <div id="showDemoObjects"
+            style="display: none; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img0" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img1" alt="Starting...  ">
+        </div>
+        <div id="showDemoImages"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img2" style="display: none;"
+                onclick="demoClick(true)" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Pen.bmp" id="img3" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img4" style="display: none;"
+                onclick="demoClick(false)" alt="Starting...  ">
+        </div>
+        <div id="showTestImages1"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img5" style="display: none;"
+                onclick="testClick(2,1,'rbread')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Bread.bmp" id="img6" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img7" style="display: none;"
+                onclick="testClick(2,1,'wbread')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages2"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img8" style="display: none;"
+                onclick="testClick(3,2,'regg')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Egg.bmp" id="img9" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img10" style="display: none;"
+                onclick="testClick(3,2,'wegg')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages3"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img11" style="display: none;"
+                onclick="testClick(4,3,'rtrolley')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Trolley.bmp" id="img12" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img13" style="display: none;"
+                onclick="testClick(4,3,'wtrolley')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages4"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img14" style="display: none;"
+                onclick="testClick(5,4,'rgoat')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Goat.bmp" id="img15" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img16" style="display: none;"
+                onclick="testClick(5,4,'wgoat')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages5"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img17" style="display: none;"
+                onclick="testClick(6,5,'wknife')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Knife.bmp" id="img18" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img19" style="display: none;"
+                onclick="testClick(6,5,'rknife')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages6"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img20" style="display: none;"
+                onclick="testClick(7,6,'rtelescope')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Telescope.bmp" id="img21" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img22" style="display: none;"
+                onclick="testClick(7,6,'wtelescope')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages7"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img23" style="display: none;"
+                onclick="testClick(8,7,'wteacher')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Teacher.bmp" id="img24" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img25" style="display: none;"
+                onclick="testClick(8,7,'rteacher')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages8"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img26" style="display: none;"
+                onclick="testClick(9,8,'rschool')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/School.bmp" id="img27" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img28" style="display: none;"
+                onclick="testClick(9,8,'wschool')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages9"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img29" style="display: none;"
+                onclick="testClick(10,9,'rjuice')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Juice.bmp" id="img30" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img31" style="display: none;"
+                onclick="testClick(10,9,'wjuice')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages10"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img32" style="display: none;"
+                onclick="testClick(11,10,'wpath')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Path.bmp" id="img33" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img34" style="display: none;"
+                onclick="testClick(11,10,'rpath')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages11"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img35" style="display: none;"
+                onclick="testClick(12,11,'rpolice')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Police.bmp" id="img36" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img37" style="display: none;"
+                onclick="testClick(12,11,'wpolice')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages12"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img38" style="display: none;"
+                onclick="testClick(13,12,'wpupil')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Pupil.bmp" id="img39" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img40" style="display: none;"
+                onclick="testClick(13,12,'rpupil')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages13"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img41" style="display: none;"
+                onclick="testClick(14,13,'wshadow')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Shadow.bmp" id="img42" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img43" style="display: none;"
+                onclick="testClick(14,13,'rshadow')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages14"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img44" style="display: none;"
+                onclick="testClick(15,14,'rtail')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Tail.bmp" id="img45" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img46" style="display: none;"
+                onclick="testClick(15,14,'wtail')" alt="Starting...  ">
+        </div>
+        <div id="showTestImages15"
+            style="display: none; width: 60rem; justify-content: space-evenly; align-items: center; margin: 35rem auto;">
+            <img class="imgStyle" src="./wockpic/pinkfullclose.bmp" id="img47" style="display: none;"
+                onclick="testClick(16,15,'wstudent')" alt="Starting...  ">
+            <img class="imgStyle" src="./Resources/Student.bmp" id="img48" style="display: none;" alt="Starting...  ">
+            <img class="imgStyle" src="./wockpic/greenfullclose.bmp" id="img49" style="display: none;"
+                onclick="testClick(16,15,'rstudent')" alt="Starting...  ">
+        </div>
+    </div>
+    <div>
+        <audio id="audio0" autoplay>
+            <source src="./Resources/penn.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio1" autoplay>
+            <source src="./Resources/ttpen.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio2" autoplay>
+            <source src="./Resources/penn.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio3" autoplay>
+            <source src="./Resources/tenn.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio4" autoplay>
+            <source src="./Resources/Whosaid.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio5" autoplay>
+            <source src="./Resources/Pen.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio6" autoplay>
+            <source src="./Resources/ttbread.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio7" autoplay>
+            <source src="./Resources/rbread.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio8" autoplay>
+            <source src="./Resources/wbread.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio9" autoplay>
+            <source src="./Resources/Bread.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio10" autoplay>
+            <source src="./Resources/ttegg.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio11" autoplay>
+            <source src="./Resources/regg.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio12" autoplay>
+            <source src="./Resources/wegg.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio13" autoplay>
+            <source src="./Resources/Egg.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio14" autoplay>
+            <source src="./Resources/tttrolley.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio15" autoplay>
+            <source src="./Resources/rtrolley.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio16" autoplay>
+            <source src="./Resources/wtrolley.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio17" autoplay>
+            <source src="./Resources/Trolley.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio18" autoplay>
+            <source src="./Resources/ttgoat.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio19" autoplay>
+            <source src="./Resources/rgoat.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio20" autoplay>
+            <source src="./Resources/wgoat.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio21" autoplay>
+            <source src="./Resources/Goat.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio22" autoplay>
+            <source src="./Resources/ttknife.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio23" autoplay>
+            <source src="./Resources/wknife.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio24" autoplay>
+            <source src="./Resources/rknife.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio25" autoplay>
+            <source src="./Resources/Knife.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio26" autoplay>
+            <source src="./Resources/tttelescope.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio27" autoplay>
+            <source src="./Resources/rtelescope.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio28" autoplay>
+            <source src="./Resources/wtelescope.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio29" autoplay>
+            <source src="./Resources/Telescope.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio30" autoplay>
+            <source src="./Resources/ttteacher.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio31" autoplay>
+            <source src="./Resources/wteacher.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio32" autoplay>
+            <source src="./Resources/rteacher.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio33" autoplay>
+            <source src="./Resources/Teacher.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio34" autoplay>
+            <source src="./Resources/ttschool.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio35" autoplay>
+            <source src="./Resources/rschool.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio36" autoplay>
+            <source src="./Resources/wschool.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio37" autoplay>
+            <source src="./Resources/School.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio38" autoplay>
+            <source src="./Resources/ttjuice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio39" autoplay>
+            <source src="./Resources/rjuice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio40" autoplay>
+            <source src="./Resources/wjuice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio41" autoplay>
+            <source src="./Resources/Juice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio42" autoplay>
+            <source src="./Resources/ttpath.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio43" autoplay>
+            <source src="./Resources/wpath.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio44" autoplay>
+            <source src="./Resources/rpath.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio45" autoplay>
+            <source src="./Resources/Path.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio46" autoplay>
+            <source src="./Resources/ttpolice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio47" autoplay>
+            <source src="./Resources/rpolice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio48" autoplay>
+            <source src="./Resources/wpolice.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio49" autoplay>
+            <source src="./Resources/police.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio50" autoplay>
+            <source src="./Resources/ttpupil.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio51" autoplay>
+            <source src="./Resources/wpupil.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio52" autoplay>
+            <source src="./Resources/rpupil.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio53" autoplay>
+            <source src="./Resources/pupil.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio54" autoplay>
+            <source src="./Resources/ttshadow.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio55" autoplay>
+            <source src="./Resources/wshadow.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio56" autoplay>
+            <source src="./Resources/rshadow.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio57" autoplay>
+            <source src="./Resources/shadow.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio58" autoplay>
+            <source src="./Resources/tttail.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio59" autoplay>
+            <source src="./Resources/rtail.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio60" autoplay>
+            <source src="./Resources/wtail.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio61" autoplay>
+            <source src="./Resources/tail.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio62" autoplay>
+            <source src="./Resources/ttstudent.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio63" autoplay>
+            <source src="./Resources/wstudent.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio64" autoplay>
+            <source src="./Resources/rstudent.wav" type="audio/mpeg">
+        </audio>
+        <audio id="audio65" autoplay>
+            <source src="./Resources/student.wav" type="audio/mpeg">
+        </audio>
+    </div>
+
+
+
+    <script>
+        let audio0 = document.getElementById("audio0");
+        let audio1 = document.getElementById("audio1");
+        let audio2 = document.getElementById("audio2");
+        let audio3 = document.getElementById("audio3");
+        let audio4 = document.getElementById("audio4");
+        let audio6 = document.getElementById("audio6");
+        let audio7 = document.getElementById("audio7");
+        let audio8 = document.getElementById("audio8");
+        let audio10 = document.getElementById("audio10");
+        let audio11 = document.getElementById("audio11");
+        let audio12 = document.getElementById("audio12");
+        let audio14 = document.getElementById("audio14");
+        let audio15 = document.getElementById("audio15");
+        let audio16 = document.getElementById("audio16");
+        let audio17 = document.getElementById("audio17");
+        let audio18 = document.getElementById("audio18");
+        let audio19 = document.getElementById("audio19");
+        let audio22 = document.getElementById("audio22");
+        let audio23 = document.getElementById("audio23");
+        let audio24 = document.getElementById("audio24");
+        let audio26 = document.getElementById("audio26");
+        let audio27 = document.getElementById("audio27");
+        let audio28 = document.getElementById("audio28");
+        let audio30 = document.getElementById("audio30");
+        let audio31 = document.getElementById("audio31");
+        let audio32 = document.getElementById("audio32");
+        let audio34 = document.getElementById("audio34");
+        let audio35 = document.getElementById("audio35");
+        let audio36 = document.getElementById("audio36");
+        let audio38 = document.getElementById("audio38");
+        let audio39 = document.getElementById("audio39");
+        let audio40 = document.getElementById("audio40");
+        let audio42 = document.getElementById("audio42");
+        let audio43 = document.getElementById("audio43");
+        let audio44 = document.getElementById("audio44");
+        let audio46 = document.getElementById("audio46");
+        let audio47 = document.getElementById("audio47");
+        let audio48 = document.getElementById("audio48");
+        let audio50 = document.getElementById("audio50");
+        let audio51 = document.getElementById("audio51");
+        let audio52 = document.getElementById("audio52");
+        let audio54 = document.getElementById("audio54");
+        let audio55 = document.getElementById("audio55");
+        let audio56 = document.getElementById("audio56");
+        let audio58 = document.getElementById("audio58");
+        let audio59 = document.getElementById("audio59");
+        let audio60 = document.getElementById("audio60");
+        let audio62 = document.getElementById("audio62");
+        let audio63 = document.getElementById("audio63");
+        let audio64 = document.getElementById("audio64");
+        // let answersArr = ["rbread", "regg", "rtrolley", "rgoat", "rknife", "rtelescope", "rteacher", "rschool", "rjuice", "rpath", "rpolice", "rpupil", "rshadow", "rtail", "rstudent"];
+        let answersArr = [];
+        let anstimeArr = [];
+        let arr = [];
+        let check1;
+        var tim1;
+        var tim2;
+        var tim3;
+        var sec;
+        var totalSeconds=0;
+
+        $("#demoPlay").click(function () {
+            var element = document.querySelector(".container1");
+            element.requestFullscreen()
+                .then(function () {
+                    $("#showDemoObjects").css("display", "flex");
+                    audio0.play();
+                    audio0.onended = () => {
+                        $("#showDemoObjects").css("display", "none");
+                        Start(0);
+                    }
+                    $("#startSection").css("display", "none");
+                })
+        });
+
+        $("#testPlay").click(function () {
+            var element = document.querySelector(".container1");
+            element.requestFullscreen()
+                .then(function () {
+                    $("#startTest").css("display", "none");
+                    Start(1);
+                })
+        });
+
+
+        function testClick(moveNext, hideCurrentDiv, answer) {
+            $(`#showTestImages${hideCurrentDiv}`).css("display", "none");
+            tim2 = new Date().getTime();
+            tim3 = tim2 - tim1;
+            // var min = Math.floor((tim3 / 1000 / 60) << 0);
+            sec = Math.floor((tim3 / 1000) % 60);
+            totalSeconds += sec;
+            anstimeArr.push(sec);
+            // console.log(sec, totalSeconds)
+            arr.push(answer);
+            Start(moveNext);
+            if (moveNext == 16) {
+                arr.map(item => {
+                    let letter0 = item.charAt(0);
+                    if (letter0 == "r") {
+                        answersArr.push(item)
+                    }
+                })
+            }
+        }
+
+        function demoClick(bolen) {
+            if (bolen) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen()
+                        .then(() => {
+                            $("#showDemoImages").css("display", "none");
+                            $("#startTest").css("display", "block");
+                        })
+                        .catch((err) => console.error(err))
+                }
+            } else {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen()
+                        .then(() => {
+                            $("#startSection").css("display", "block");
+                            $("#img2").css("display", "none");
+                            $("#img3").css("display", "none");
+                            $("#img4").css("display", "none");
+                        })
+                        .catch((err) => console.error(err))
+                }
+            }
+        }
+
+        function Start(check) {
+            if (check === 0) {
+                console.log(check);
+                $("#showDemoImages").css("display", "flex");
+                $("#img3").css("display", "block");
+                audio1.play();
+                audio1.onended = () => {
+                    $("#img2").css("display", "block");
+                    setTimeout(() => {
+                        $("#img2").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio2.play();
+                    }, 1000);
+                }
+                audio2.onended = () => {
+                    $("#img2").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img4").css("display", "block");
+                    setTimeout(() => {
+                        $("#img4").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio3.play();
+                    }, 1000);
+                }
+                audio3.onended = () => {
+                    $("#img4").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio5").play();
+                    }
+                }
+            }
+            else if (check === 1) {
+                console.log(check);
+                $("#showTestImages1").css("display", "flex");
+                $("#img6").css("display", "block");
+                audio6.play();
+                audio6.onended = () => {
+                    $("#img5").css("display", "block");
+                    setTimeout(() => {
+                        $("#img5").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio7.play();
+                    }, 1000);
+                }
+                audio7.onended = () => {
+                    $("#img5").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img7").css("display", "block");
+                    setTimeout(() => {
+                        $("#img7").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio8.play();
+                    }, 1000);
+                }
+                audio8.onended = () => {
+                    $("#img7").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio9").play();
+                        tim1 = new Date().getTime();
+                        // console.log(tim1)
+                    }
+                }
+            }
+            else if (check === 2) {
+                $("#showTestImages2").css("display", "flex");
+                $("#img9").css("display", "block");
+                audio10.play();
+                audio10.onended = () => {
+                    $("#img8").css("display", "block");
+                    setTimeout(() => {
+                        $("#img8").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio11.play();
+                    }, 1000);
+                }
+                audio11.onended = () => {
+                    $("#img8").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img10").css("display", "block");
+                    setTimeout(() => {
+                        $("#img10").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio12.play();
+                    }, 1000);
+                }
+                audio12.onended = () => {
+                    $("#img10").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio13").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 3) {
+                $("#showTestImages3").css("display", "flex");
+                $("#img12").css("display", "block");
+                audio14.play();
+                audio14.onended = () => {
+                    $("#img11").css("display", "block");
+                    setTimeout(() => {
+                        $("#img11").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio15.play();
+                    }, 1000);
+                }
+                audio15.onended = () => {
+                    $("#img11").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img13").css("display", "block");
+                    setTimeout(() => {
+                        $("#img13").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio16.play();
+                    }, 1000);
+                }
+                audio16.onended = () => {
+                    $("#img13").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio17").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 4) {
+                $("#showTestImages4").css("display", "flex");
+                $("#img15").css("display", "block");
+                audio18.play();
+                audio18.onended = () => {
+                    $("#img14").css("display", "block");
+                    setTimeout(() => {
+                        $("#img14").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio20.play();
+                    }, 1000);
+                }
+                audio20.onended = () => {
+                    $("#img14").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img16").css("display", "block");
+                    setTimeout(() => {
+                        $("#img16").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio19.play();
+                    }, 1000);
+                }
+                audio19.onended = () => {
+                    $("#img16").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio21").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 5) {
+                $("#showTestImages5").css("display", "flex");
+                $("#img18").css("display", "block");
+                audio22.play();
+                audio22.onended = () => {
+                    $("#img17").css("display", "block");
+                    setTimeout(() => {
+                        $("#img17").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio23.play();
+                    }, 1000);
+                }
+                audio23.onended = () => {
+                    $("#img17").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img19").css("display", "block");
+                    setTimeout(() => {
+                        $("#img19").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio24.play();
+                    }, 1000);
+                }
+                audio24.onended = () => {
+                    $("#img19").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio25").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 6) {
+                $("#showTestImages6").css("display", "flex");
+                $("#img21").css("display", "block");
+                audio26.play();
+                audio26.onended = () => {
+                    $("#img20").css("display", "block");
+                    setTimeout(() => {
+                        $("#img20").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio27.play();
+                    }, 1000);
+                }
+                audio27.onended = () => {
+                    $("#img20").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img22").css("display", "block");
+                    setTimeout(() => {
+                        $("#img22").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio28.play();
+                    }, 1000);
+                }
+                audio28.onended = () => {
+                    $("#img22").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio29").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 7) {
+                $("#showTestImages7").css("display", "flex");
+                $("#img24").css("display", "block");
+                audio30.play();
+                audio30.onended = () => {
+                    $("#img23").css("display", "block");
+                    setTimeout(() => {
+                        $("#img23").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio31.play();
+                    }, 1000);
+                }
+                audio31.onended = () => {
+                    $("#img23").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img25").css("display", "block");
+                    setTimeout(() => {
+                        $("#img25").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio32.play();
+                    }, 1000);
+                }
+                audio32.onended = () => {
+                    $("#img25").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio33").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 8) {
+                $("#showTestImages8").css("display", "flex");
+                $("#img27").css("display", "block");
+                audio34.play();
+                audio34.onended = () => {
+                    $("#img26").css("display", "block");
+                    setTimeout(() => {
+                        $("#img26").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio35.play();
+                    }, 1000);
+                }
+                audio35.onended = () => {
+                    $("#img26").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img28").css("display", "block");
+                    setTimeout(() => {
+                        $("#img28").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio36.play();
+                    }, 1000);
+                }
+                audio36.onended = () => {
+                    $("#img28").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio37").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 9) {
+                $("#showTestImages9").css("display", "flex");
+                $("#img30").css("display", "block");
+                audio38.play();
+                audio38.onended = () => {
+                    $("#img29").css("display", "block");
+                    setTimeout(() => {
+                        $("#img29").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio39.play();
+                    }, 1000);
+                }
+                audio39.onended = () => {
+                    $("#img29").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img31").css("display", "block");
+                    setTimeout(() => {
+                        $("#img31").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio40.play();
+                    }, 1000);
+                }
+                audio40.onended = () => {
+                    $("#img31").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio41").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 10) {
+                $("#showTestImages10").css("display", "flex");
+                $("#img33").css("display", "block");
+                audio42.play();
+                audio42.onended = () => {
+                    $("#img32").css("display", "block");
+                    setTimeout(() => {
+                        $("#img32").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio43.play();
+                    }, 1000);
+                }
+                audio43.onended = () => {
+                    $("#img32").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img34").css("display", "block");
+                    setTimeout(() => {
+                        $("#img34").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio44.play();
+                    }, 1000);
+                }
+                audio44.onended = () => {
+                    $("#img34").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio45").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 11) {
+                $("#showTestImages11").css("display", "flex");
+                $("#img36").css("display", "block");
+                audio46.play();
+                audio46.onended = () => {
+                    $("#img35").css("display", "block");
+                    setTimeout(() => {
+                        $("#img35").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio47.play();
+                    }, 1000);
+                }
+                audio47.onended = () => {
+                    $("#img35").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img37").css("display", "block");
+                    setTimeout(() => {
+                        $("#img37").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio48.play();
+                    }, 1000);
+                }
+                audio48.onended = () => {
+                    $("#img37").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio49").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 12) {
+                $("#showTestImages12").css("display", "flex");
+                $("#img39").css("display", "block");
+                audio50.play();
+                audio50.onended = () => {
+                    $("#img38").css("display", "block");
+                    setTimeout(() => {
+                        $("#img38").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio51.play();
+                    }, 1000);
+                }
+                audio51.onended = () => {
+                    $("#img38").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img40").css("display", "block");
+                    setTimeout(() => {
+                        $("#img40").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio52.play();
+                    }, 1000);
+                }
+                audio52.onended = () => {
+                    $("#img40").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio53").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 13) {
+                $("#showTestImages13").css("display", "flex");
+                $("#img42").css("display", "block");
+                audio54.play();
+                audio54.onended = () => {
+                    $("#img41").css("display", "block");
+                    setTimeout(() => {
+                        $("#img41").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio55.play();
+                    }, 1000);
+                }
+                audio55.onended = () => {
+                    $("#img41").attr("src", "./wockpic/greenfullclose.bmp");
+                    $("#img43").css("display", "block");
+                    setTimeout(() => {
+                        $("#img43").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio56.play();
+                    }, 1000);
+                }
+                audio56.onended = () => {
+                    $("#img43").attr("src", "./wockpic/pinkfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio57").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 14) {
+                $("#showTestImages14").css("display", "flex");
+                $("#img45").css("display", "block");
+                audio58.play();
+                audio58.onended = () => {
+                    $("#img44").css("display", "block");
+                    setTimeout(() => {
+                        $("#img44").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio59.play();
+                    }, 1000);
+                }
+                audio59.onended = () => {
+                    $("#img44").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img46").css("display", "block");
+                    setTimeout(() => {
+                        $("#img46").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio60.play();
+                    }, 1000);
+                }
+                audio60.onended = () => {
+                    $("#img46").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio61").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 15) {
+                $("#showTestImages15").css("display", "flex");
+                $("#img48").css("display", "block");
+                audio62.play();
+                audio62.onended = () => {
+                    $("#img47").css("display", "block");
+                    setTimeout(() => {
+                        $("#img47").attr("src", "./wockpic/pinkfullopen.bmp");
+                        audio63.play();
+                    }, 1000);
+                }
+                audio63.onended = () => {
+                    $("#img47").attr("src", "./wockpic/pinkfullclose.bmp");
+                    $("#img49").css("display", "block");
+                    setTimeout(() => {
+                        $("#img49").attr("src", "./wockpic/greenfullopen.bmp");
+                        audio64.play();
+                    }, 1000);
+                }
+                audio64.onended = () => {
+                    $("#img49").attr("src", "./wockpic/greenfullclose.bmp");
+                    audio4.play();
+                    audio4.onended = () => {
+                        document.getElementById("audio65").play();
+                        tim1 = new Date().getTime();
+                    }
+                }
+            }
+            else if (check === 16) {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen()
+                        .then(() => {
+                            $("#testResult").css("display", "flex");
+                            document.getElementById("testResult").innerHTML = `you scored ${answersArr.length}`;
+                        })
+                        .catch((err) => console.error(err))
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
